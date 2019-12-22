@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content">
+                <h:form id="ReservationsForm" class="text-left reservation-form" >
+                    <div class="margin-bottom">
+                        <h:outputLabel style="font-size: x-large" class="margin-bottom" value="#{msg['page.specialists.reservations.list.title']}" />
+                        <h:messages globalOnly="true" styleClass="error_large" />                
+                        <h:messages id="success" for="success" styleClass="confirm_large" />
+                        <div class="flex-column">
+                            <h:dataTable width="100%" var="row" class="table table-striped" value="${listSpecialistReservationsPageBean.dataModelReservation}">
+                                <label class ="text-left" >
+                                    <h:column id="specialization" class="padding">
+                                        <f:facet name="header">${msg['page.reservation.label.specialization']}</f:facet>
+                                        <h:outputText value="#{row.reservedSpecialist.specialization}" />
+                                    </h:column>
+                                </label>
+                                <label class="text-left">
+                                    <h:column id="reservedSpecialist">
+                                        <f:facet name="header">${msg['page.reservation.label.specialist']}</f:facet>
+                                        <h:outputText value="#{row.reservedSpecialist.specialistName} #{row.reservedSpecialist.specialistSurname}" />
+                                    </h:column>
+                                </label>
+                                <label class="text-left">
+                                    <h:column id="reservationDate">
+                                        <f:facet name="header">${msg['page.reservation.label.reservation.date']}</f:facet>
+                                        <h:outputText value="#{row.reservationDate}" >
+                                            <f:convertDateTime type="date" dateStyle="long" timeStyle="short" />
+                                        </h:outputText>
+                                    </h:column>
+                                </label>
+                                <label class="text-left">
+                                    <h:column id="reservationTime">
+                                        <f:facet name="header">${msg['page.reservation.label.reservation.time']}</f:facet>
+                                        <h:outputText value="#{row.reservationDate}" >
+                                            <f:convertDateTime type="time" dateStyle="long" timeStyle="short" />
+                                        </h:outputText>
+                                    </h:column>
+                                </label>
+                                <label class="text-left">
+                                    <h:column id="reservationCreator">
+                                        <f:facet name="header">${msg['page.reservation.label.reservation.creator']}</f:facet>
+                                        <h:outputText value="#{row.reservationCreator.login}" />
+                                    </h:column>
+                                </label>
+                                <label class="text-left">
+                                    <h:column id="creatorNumber">
+                                        <f:facet name="header">${msg['page.reservation.label.reservation.creator.phone']}</f:facet>
+                                        <h:outputText value="#{row.reservationCreator.phoneNumber}" />
+                                    </h:column>
+                                </label>
+                                <h:column id="actions">
+                                    <f:facet  name="header">${msg['page.header.label.actions']}</f:facet>
+                                    <div>
+                                        <h:commandButton value="${msg['page.reservations.list.action.delete']}" class="main-button" 
+                                                         action="${listSpecialistReservationsPageBean.deleteReservationAction(row)}" 
+                                                         onclick="if (!confirm('${msg['page.info.confirm.delete.action']}')) {return false;};return true;"/>
+                                    </div>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                        <div class="flex-center margin-top-small">
+                            <div>
+                                <h:commandButton class="main-button margin-right-small" value="#{msg['page.reservations.list.action.delete.mass']}" 
+                                                 action="${listSpecialistReservationsPageBean.deleteAllSpecialistReservations()}" 
+                                                 onclick="if (!confirm('${msg['page.info.confirm.delete.action']}')) {return false;};return true;"/>
+                            </div>
+                            <div>
+                                <h:commandButton value="#{msg['page.action.return.main']}" class="main-button" action="mainPage.xhtml" immediate="true"/>   
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

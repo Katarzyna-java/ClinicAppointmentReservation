@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content">
+                <h:form id="SpecialistsForm" class="text-left reservation-form">
+                    <div class="margin-bottom">
+                        <h:outputLabel style="font-size: x-large" class="margin-bottom" value="#{msg['page.specialists.list.title']}" />
+                        <h:messages globalOnly="true" styleClass="error_large" />                
+                        <h:messages id="success" for="success" styleClass="confirm_large" />
+                        <div class="flex-column">
+                            <h:dataTable width="100%" var="row" class="table table-striped" value="${listSpecialistsPageBean.dataModelSpecialist}">
+                                <label class="text-left"> 
+                                    <h:column id="specializationCode" class="padding">
+                                        <f:facet name="header">#{msg['page.specialization.label.specializationCode']}</f:facet>
+                                        <h:outputText value="#{row.specialization.specializationCode}" />
+                                    </h:column>
+                                </label>
+                                <label class="text-left">
+                                    <h:column id="specialization">
+                                        <f:facet name="header">#{msg['page.specialist.label.specialization']}</f:facet>
+                                        <h:outputText value="#{row.specialization.specializationName}" />
+                                    </h:column>
+                                </label>
+                                <label class="text-left">
+                                    <h:column id="name">
+                                        <f:facet name="header">#{msg['page.specialist.label.specialist.name']}</f:facet>
+                                        <h:outputText value="#{row.specialistName}" />
+                                    </h:column>
+                                </label>
+                                <label class="text-left">
+                                    <h:column id="surname">
+                                        <f:facet name="header">#{msg['page.specialist.label.specialist.surnname']}</f:facet>
+                                        <h:outputText value="#{row.specialistSurname}" />
+                                    </h:column>
+                                </label>
+                                <label class="text-left">
+                                    <h:column id="licenseNumber">
+                                        <f:facet name="header">#{msg['page.specialist.label.license.number']}</f:facet>
+                                        <h:outputText value="#{row.licenseNumber}" />
+                                    </h:column>
+                                </label>
+                                <h:column id="actions">
+                                    <f:facet  name="header">#{msg['page.header.label.actions']}</f:facet>
+                                    <div>
+                                        <h:commandButton value="#{msg['page.specialists.list.action.edit']}"  class="main-button margin-right-small" 
+                                                         action="${listSpecialistsPageBean.editSpecialistAction(row)}"/>
+                                        <h:commandButton value="#{msg['page.specialists.list.action.active']}"  class="main-button margin-right-small" 
+                                                         action="${listSpecialistsPageBean.activateSpecialistAction(row)}" disabled="#{row.active}"/>
+                                        <h:commandButton value="#{msg['page.specialists.list.action.deactive']}"   class="main-button margin-right-small" 
+                                                         action="${listSpecialistsPageBean.deactivateSpecialistAction(row)}" disabled="#{not row.active}"/>
+                                        <h:commandButton value="${msg['page.specialists.list.action.delete']}" class="main-button margin-right-small" 
+                                                         action="${listSpecialistsPageBean.deleteSelectedSpecialistAction(row)}" disabled="#{not row.presentInReservation}" 
+                                                         onclick="if (! confirm('${msg['page.info.confirm.delete.action']}') ) { return false;}; return true; "/>
+                                        <h:commandButton value="${msg['page.specialists.list.action.list.specialist.reservations']}" class="main-button" 
+                                                         action="${listSpecialistsPageBean.listSpecialistReservations(row)}" disabled="#{row.presentInReservation}" />
+                                    </div>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                        <div class="flex-center margin-top-small">
+                            <div>
+                                <h:commandButton value="#{msg['page.action.cancel']}" class="main-button" action="mainPage.xhtml" immediate="true"/>   
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

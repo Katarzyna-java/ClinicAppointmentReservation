@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        <locale-config>
+            <default-locale>pl</default-locale>
+            <supported-locale>pl</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>i18n.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        <message-bundle>
+            i18n.jsf_messages
+        </message-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+   
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>main</from-outcome>
+            <to-view-id>/mainPage.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>changePassword</from-outcome>
+            <to-view-id>/changePassword.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>      
+        <navigation-case>
+            <from-outcome>listAuthorizedAccounts</from-outcome>
+            <to-view-id>/listAuthorizedAccounts.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>    
+        <navigation-case>
+            <from-outcome>listNewAccounts</from-outcome>
+            <to-view-id>/listNewAccounts.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listSpecialists</from-outcome>
+            <to-view-id>/listSpecialists.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listSpecializations</from-outcome>
+            <to-view-id>/listSpecializations.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listAllReservations</from-outcome>
+            <to-view-id>/listAllReservations.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listMyCurrentReservations</from-outcome>
+            <to-view-id>/listMyCurrentReservations.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listSpecialistReservations</from-outcome>
+            <to-view-id>/listSpecialistReservations.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>editAccount</from-outcome>
+            <to-view-id>/editAccount.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editMyAccount</from-outcome>
+            <to-view-id>/editMyAccount.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>displayMyAccount</from-outcome>
+            <to-view-id>/displayMyAccount.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>register</from-outcome>
+            <to-view-id>/registerAccount.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>resetPassword</from-outcome>
+            <to-view-id>/resetPassword.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>resetPassword2</from-outcome>
+            <to-view-id>/resetPassword2.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>resetPassword3</from-outcome>
+            <to-view-id>/resetPassword3.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editSpecialist</from-outcome>
+            <to-view-id>/editSpecialist.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editReservation</from-outcome>
+            <to-view-id>/editReservation.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addReservation1</from-outcome>
+            <to-view-id>/addReservation1.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addReservation2</from-outcome>
+            <to-view-id>/addReservation2.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addReservation3</from-outcome>
+            <to-view-id>/addReservation3.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+ 
+    </navigation-rule>    
+</faces-config>

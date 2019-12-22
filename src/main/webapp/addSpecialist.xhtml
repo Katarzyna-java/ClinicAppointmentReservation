@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content" class="flex-center flex-column">
+                <h:outputLabel style="font-size: x-large" class="margin-bottom flex-center"  value="#{msg['page.add.new.specialist.title']}" />
+                <div class="flex flex-center">
+                    <h:form id="AddSpecialistForm"  class="text-left reservation-form">   
+                        <div class="margin-bottom text-center">
+                            <h:messages globalOnly="true" styleClass="error_large" />                
+                            <h:messages id="success" for="success" styleClass="confirm_large" />
+                            <div class="flex-column">
+                                <label class="text-left">
+                                    <h:outputLabel value="#{msg['page.specialist.label.specialization']} " />
+                                </label>
+                                <h:selectOneMenu id="specialization"  class="js-select"  value="${addSpecialistPageBean.specializationDTO.specializationCode}" >
+                                    <f:selectItem itemLabel="${msg['page.add.specialist.list.choose.specialization']}:"  />
+                                    <f:selectItems  value="${addSpecialistPageBean.listSpecializations}" var="specializations" itemValue="#{specializations.specializationCode}" itemLabel="#{specializations}" />
+                                </h:selectOneMenu>
+                                <h:message for="specialization" styleClass="error_small"/>
+                                <label class="text-left">
+                                    <h:outputLabel value="#{msg['page.specialist.label.specialist.name']} " />
+                                </label>
+                                <h:inputText id="name" maxlength="100" required="true" validatorMessage="#{msg['page.add.specialist.validator.specialist.name']}"   
+                                             value="${addSpecialistPageBean.specialistDTO.specialistName}" >
+                                    <f:validateLength minimum="3" maximum="100"  ></f:validateLength>
+                                    <f:validateRegex pattern="[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+([\s][A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)?" />                    
+                                </h:inputText>
+                                <h:message for="name" styleClass="error_small"/>
+                                <label class="text-left">
+                                    <h:outputLabel value="#{msg['page.specialist.label.specialist.surnname']}" />
+                                </label>
+                                <h:inputText id="surname" maxlength="100" required="true" validatorMessage="#{msg['page.add.specialist.validator.specialist.surname']}"
+                                             value="${addSpecialistPageBean.specialistDTO.specialistSurname}" >
+                                    <f:validateLength minimum="3" maximum="100"  ></f:validateLength>
+                                    <f:validateRegex pattern="[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]*([\s\-\'][A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]*)*" />                    
+                                </h:inputText>
+                                <h:message for="surname" styleClass="error_small"/>
+                                <label class="text-left">
+                                    <h:outputLabel value="#{msg['page.specialist.label.license.number']} " />
+                                </label>
+                                <h:inputText id="licenseNumber" maxlength="7" required="true" validatorMessage="#{msg['page.add.specialist.validator.specialist.license.number']}"
+                                             value="${addSpecialistPageBean.specialistDTO.licenseNumber}" > 
+                                    <f:validateLength minimum="7" maximum="7" />
+                                    <f:validateRegex pattern="\d{7}" />
+                                </h:inputText>
+                                <h:message for="licenseNumber" styleClass="error_small"/>
+                            </div>
+                            <div class="flex-center margin-top-small">
+                                <div>
+                                    <h:commandButton value="#{msg['page.action.add']}"  class="main-button margin-right"
+                                                     action="${addSpecialistPageBean.addSpecialistAction()}" />
+                                </div> 
+                                <div>
+                                    <h:commandButton value="#{msg['page.action.cancel']}"  class="main-button"
+                                                     action="mainPage.xhtml" immediate="true"/><br/>
+                                </div>
+                            </div>
+                        </div>                                
+                        <h:outputLabel value="#{msg['page.info.reservation.empty.list']}" /><br/>
+                    </h:form>
+                </div>
+            </ui:define>  
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./mainTemplate.xhtml">
+            <ui:define name="content" class="flex-center flex-column">
+                <div class="flex flex-center"><h:form id="EditReservationForm" class="text-left reservation-form">   
+                        <div class="margin-bottom text-center"> 
+                            <h:messages globalOnly="true" styleClass="error_large" />                
+                            <h:messages id="success" for="success" styleClass="confirm_large" />
+                            <div class="flex-column">
+                                <h:outputLabel style="font-size: x-large" class="margin-bottom flex-center" value="#{msg['page.edit.reservation.title']}" />
+                                <label class="text-left">
+                                    <h:outputLabel value="#{msg['page.add.reservation.form.label.specialization']} " />
+                                </label>
+                                <h:inputText class="margin-bottom-small" id="specialization" maxlength="100" required="true" disabled="true"
+                                             value="${editReservationPageBean.reservationDTO.reservedSpecialist.specialization}" >
+                                </h:inputText>
+                                <h:message for="specialization" />
+                                <label class="text-left">
+                                    <h:outputLabel value="#{msg['page.add.reservation.form.label.specialist']} " />
+                                </label>
+                                <h:inputText class="margin-bottom-small" id="specialist" maxlength="100" required="true" disabled="true"
+                                             value="${editReservationPageBean.reservationDTO.reservedSpecialist.specialistName} ${editReservationPageBean.reservationDTO.reservedSpecialist.specialistSurname}" >
+                                </h:inputText>
+                                <h:message for="specialist" />
+                                <label class="text-left">
+                                    <h:outputLabel value="#{msg['page.add.reservation.form.label.reservationtime']} #{msg['page.add.reservation.form.label.reservationpattern']}" />
+                                </label>
+                                <h:inputText class="datetimepicker" id="reservationDate" maxlength="13" size="13" required="true" validatorMessage="page.reservation.validator.reservationtime"
+                                             value="${editReservationPageBean.reservationDTO.reservationDate}" >
+                                    <f:convertDateTime type="both" pattern="yyyy-MM-dd HH"/>
+                                </h:inputText>
+                                <h:message for="reservationDate"/>
+                            </div>
+                            <div class="flex-center margin-top-small">
+                                <div>
+                                    <h:commandButton class="main-button margin-right" value="#{msg['page.action.save']}"  
+                                                     action="${editReservationPageBean.saveEditedReservationAction()}" />    
+                                </div>
+                                <div>
+                                    <h:commandButton class="main-button" value="#{msg['page.action.cancel']}"  
+                                                     action="listMyReservations.xhtml" immediate="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <h:outputLabel value="#{msg['page.info.text.required']}" />
+                    </h:form>
+                </div>
+            </ui:define>  
+        </ui:composition>
+    </body>
+</html>
