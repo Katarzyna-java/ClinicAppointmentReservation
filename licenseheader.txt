@@ -1,0 +1,9 @@
+﻿<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Projekt końcowy studiów podyplomowych:
+${licensePrefix}"Nowoczesne aplikacje biznesowe Java EE" ed 8
+
+${licensePrefix}Autor: Katarzyna Brewczyńska<#if licenseLast??>
+${licenseLast}
+</#if>
